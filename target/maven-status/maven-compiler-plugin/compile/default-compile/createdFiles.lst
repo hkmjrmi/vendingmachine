@@ -1,0 +1,4 @@
+com\uob\VendingMachine.class
+com\uob\repository\TutorialRepository.class
+com\uob\controller\TutorialController.class
+com\uob\model\Tutorial.class
