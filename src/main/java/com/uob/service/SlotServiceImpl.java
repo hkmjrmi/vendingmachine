@@ -20,8 +20,30 @@ public class SlotServiceImpl implements SlotService {
 
     @Override
     public Slot createSlot(Slot slot) {
-        return slotRepository.save(slot);
+        int smallSlots = 10;
+        int mediumSlots = 10;
+        int slotsCreated = 0;
+        while (slotsCreated < 20) {
+            // Create 10 small slots
+            for (int i = 0; i < smallSlots; i++) {
+                Slot smallSlot = new Slot();
+                smallSlot.setSize("small");
+                slotRepository.save(smallSlot);
+                slotsCreated++;
+            }
+
+            // Create 10 medium slots
+            for (int i = 0; i < mediumSlots; i++) {
+                Slot mediumSlot = new Slot();
+                mediumSlot.setSize("medium");
+                slotRepository.save(mediumSlot);
+                slotsCreated++;
+            }
+        }
+        return slot; // Return the created slot object
     }
+
+
 
     @Override
     public List<Slot> getAllSlots() {

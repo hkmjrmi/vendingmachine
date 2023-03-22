@@ -20,14 +20,14 @@ import java.util.List;
 public class Slot {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long slotId;
 
     private String size;
 
     private Double price = 0.00;
 
-    private int capacity;
+    private int currentQuantity;
 
     @OneToMany(mappedBy = "slot", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore

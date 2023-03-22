@@ -27,10 +27,11 @@ public class SlotController {
         return ResponseEntity.ok(slot);
     }
 
-    @PostMapping("/slots/create") // Initialize New Slot
-    public ResponseEntity<Slot> createSlot(@RequestBody Slot slotRequest) {
-        Slot slot = slotServiceImpl.createSlot(slotRequest);
-        return ResponseEntity.ok(slot);
+    @PostMapping("/slots/create")
+    public ResponseEntity<String> createSlot(@RequestBody Slot slot) {
+        Slot createdSlot = slotServiceImpl.createSlot(slot);
+        return ResponseEntity.ok().body("Slot created");
     }
+
 
 }

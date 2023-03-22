@@ -27,6 +27,8 @@ public class Item  {
 
     private String size;
 
+    private String status = "Available";
+
     @ManyToOne
     @JoinColumn(name = "slot_id")
     private Slot slot;

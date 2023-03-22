@@ -26,6 +26,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> getAvailableItems() {
+        return itemRepository.findAllByStatus("Available");
+    }
+
+    @Override
     public Item saveItem(Item itemRequest) {
         return itemRepository.save(itemRequest);
     }
@@ -43,12 +48,12 @@ public class ItemServiceImpl implements ItemService {
         if (slot.getSize().equals("Small") && itemRequest.getSize().equals("Medium")) {
             throw new RuntimeException("Cannot add medium item to small slot.");
         }
-        if (slot.getCapacity() >= 10) {
+        if (slot.getCurrentQuantity() >= 10) {
             throw new RuntimeException("Slot capacity is already at its maximum limit.");
         }
         itemRequest.setSlot(slot);
         Item addItem = itemRepository.save(itemRequest);
-        slot.setCapacity(slot.getCapacity() + 1);
+        slot.setCurrentQuantity(slot.getCurrentQuantity() + 1);
         slot.setPrice(addItem.getPrice());
         slotRepository.save(slot);
         return addItem;

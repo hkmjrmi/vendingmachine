@@ -1,7 +1,5 @@
 package com.uob.controller;
 
-import com.uob.object.Item;
-import com.uob.object.Slot;
 import com.uob.object.Transaction;
 import com.uob.service.TransactionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,10 @@ public class TransactionController {
         return transactionServiceImpl.getAllTransactions();
     }
 
-    @PostMapping("/slots/{slotId}/transactions/add")
-    public ResponseEntity<Transaction> addItem(@PathVariable(value = "slotId") Long slotId,
+    @PostMapping("/items/{itemId}/transactions/add")
+    public ResponseEntity<Transaction> addItem(@PathVariable(value = "itemId") Long itemId,
                                         @RequestBody Transaction transactionRequest) {
-        transactionServiceImpl.newTransaction(slotId, transactionRequest);
+        transactionServiceImpl.newTransaction(itemId, transactionRequest);
         return new ResponseEntity<>(transactionRequest, HttpStatus.CREATED);
     }
 

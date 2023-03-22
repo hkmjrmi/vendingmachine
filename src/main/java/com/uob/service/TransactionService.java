@@ -1,5 +1,6 @@
 package com.uob.service;
 
+import com.uob.object.Item;
 import com.uob.object.Slot;
 import com.uob.object.Transaction;
 
@@ -13,6 +14,8 @@ public interface TransactionService {
 
 
     public Slot getSlotById(Long slotId);
+
+    public Item getItemById(Long itemId);
 
     Transaction newTransaction(Long slotId, Transaction transactionRequest);
 }

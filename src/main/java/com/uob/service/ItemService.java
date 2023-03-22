@@ -8,6 +8,9 @@ import java.util.List;
 public interface ItemService {
 
     public List<Item> getAllItems();
+
+    public List<Item> getAvailableItems();
+
     public Item saveItem(Item itemRequest);
     public Item addItemToSlot(Long slotId, Item itemRequest);
     public Slot getSlotById(Long slotId);

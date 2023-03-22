@@ -32,6 +32,11 @@ public class ItemController {
         return itemServiceImpl.getAllItems();
     }
 
+    @GetMapping("/items/available/list") // Retrieve all items
+    public List<Item> getAvailableItems() {
+        return itemServiceImpl.getAvailableItems();
+    }
+
     @PostMapping("/slots/{slotId}/items/add")
     public ResponseEntity<Item> addItem(@PathVariable(value = "slotId") Long slotId,
                                            @RequestBody Item itemRequest) {

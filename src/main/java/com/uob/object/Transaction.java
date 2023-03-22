@@ -26,9 +26,6 @@ public class Transaction {
     private Double amount;
 
     @OneToOne
-    @JoinColumn(name = "slot_id")
-    private Slot slot;
-
-
-
+    @JoinColumn(name = "item_id")
+    private Item item;
 }
