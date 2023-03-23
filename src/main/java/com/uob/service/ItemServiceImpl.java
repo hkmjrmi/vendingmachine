@@ -26,6 +26,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> getItemsBySlot(Long slotId) {
+       Slot slot = getSlotById(slotId);
+       List<Item> item = slot.getItems();
+       return item;
+    }
+
+    @Override
     public List<Item> getAvailableItems() {
         return itemRepository.findAllByStatus("Available");
     }

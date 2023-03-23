@@ -44,6 +44,11 @@ public class ItemController {
         return new ResponseEntity<>(itemRequest, HttpStatus.CREATED);
     }
 
+    @GetMapping("/slots/{slotId}/items")
+    public List<Item> getItemsBySlot(@PathVariable(value = "slotId") Long slotId) {
+        return itemServiceImpl.getItemsBySlot(slotId);
+    }
+
 
 
 }

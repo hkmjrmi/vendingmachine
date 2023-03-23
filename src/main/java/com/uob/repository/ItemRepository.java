@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends CrudRepository <Item, Long> {
     List<Item> findAllByStatus(String status);
+
+    List<Item> findAllBySlot(Long slotId);
 }

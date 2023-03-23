@@ -30,8 +30,9 @@ public class SlotController {
     @PostMapping("/slots/create")
     public ResponseEntity<String> createSlot(@RequestBody Slot slot) {
         Slot createdSlot = slotServiceImpl.createSlot(slot);
-        return ResponseEntity.ok().body("Slot created");
+        return ResponseEntity.ok("Slot created");
     }
+
 
 
 }

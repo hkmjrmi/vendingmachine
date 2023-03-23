@@ -22,26 +22,46 @@ public class SlotServiceImpl implements SlotService {
     public Slot createSlot(Slot slot) {
         int smallSlots = 10;
         int mediumSlots = 10;
-        int slotsCreated = 0;
-        while (slotsCreated < 20) {
-            // Create 10 small slots
-            for (int i = 0; i < smallSlots; i++) {
-                Slot smallSlot = new Slot();
-                smallSlot.setSize("small");
-                slotRepository.save(smallSlot);
-                slotsCreated++;
+
+        // Retrieve the total number of slots already created from the database
+        long totalSlots = slotRepository.count();
+
+        // Check if we've already created 20 slots
+        if (totalSlots >= 20) {
+            throw new RuntimeException("Slot maximum capacity has been reached");
+        }
+
+        // Create 10 small slots
+        for (int i = 0; i < smallSlots; i++) {
+            // Check if we've already created 20 slots
+            if (totalSlots >= 20) {
+                break; // Exit the loop
             }
 
-            // Create 10 medium slots
-            for (int i = 0; i < mediumSlots; i++) {
-                Slot mediumSlot = new Slot();
-                mediumSlot.setSize("medium");
-                slotRepository.save(mediumSlot);
-                slotsCreated++;
-            }
+            Slot smallSlot = new Slot();
+            smallSlot.setSize("small");
+            slotRepository.save(smallSlot);
+            totalSlots++;
         }
-        return slot; // Return the created slot object
+
+        // Create 10 medium slots
+        for (int i = 0; i < mediumSlots; i++) {
+            // Check if we've already created 20 slots
+            if (totalSlots >= 20) {
+                break; // Exit the loop
+            }
+
+            Slot mediumSlot = new Slot();
+            mediumSlot.setSize("medium");
+            slotRepository.save(mediumSlot);
+            totalSlots++;
+        }
+
+        // Return the created slot object
+        return slot;
     }
+
+
 
 
 
